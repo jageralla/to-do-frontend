@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Logout() {
   localStorage.clear();
@@ -22,8 +23,10 @@ function Logout() {
 
 function App() {
   const [token, setToken] = useState("");
+  const [serverActive, setServerActive] = useState("false")
 
   useEffect(() => {
+    checkServerStatus(); // check if backend server is online
     const path = window.location.pathname;
     const segments = path.split("/"); // Split the path into segments
     const tokenFromUrl = segments[segments.length - 2]; // Assuming the token is the last segment/ Assuming the token is the last segment
@@ -32,9 +35,19 @@ function App() {
     }
   }, []);
 
+  const checkServerStatus = async () => {
+    const response = axios.get('/api/online');
+    if (response.status == 200){
+      setServerActive(true)
+    }
+    setServerActive(false)
+  }
+  
   return (
+    <>
     <BrowserRouter>
       <Header />
+      {!serverActive? <p className="text-center">500 INTERNAL SERVER ERROR</p> :
       <Routes>
         <Route
           path="/"
@@ -57,8 +70,9 @@ function App() {
           element={<PasswordResetConfirmPage token={token} />}
         />
         <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+      </Routes>}
+    </BrowserRouter></>
+    
   );
 }
 

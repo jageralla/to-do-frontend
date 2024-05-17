@@ -1,7 +1,7 @@
 import Todo from "../components/Todo";
 import api from "../api";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FilterNavItem from "../components/FilterNavItem";
 import Spinner from "../components/Spinner";
 import NoTodosMessage from "../components/NoToDosMessage";
@@ -12,6 +12,7 @@ const Home = () => {
   const [filter, setFilter] = useState("all");
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTodos();
@@ -24,6 +25,7 @@ const Home = () => {
       setTodos(response.data);
     } catch (error) {
       alert("You have been logged out. Please Login again.");
+      navigate("/login")
     }
   };
 

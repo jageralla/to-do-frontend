@@ -55,7 +55,7 @@ api.interceptors.response.use(
 
         if (response.status === 200) {
           // if successful, store the new access token to localstorage and the update the authorization header with the new token and do the request again
-          console.log("token renewed");
+          console.log("token freshed");
           localStorage.setItem(ACCESS_TOKEN, response.data.access);
           originalRequest.headers["Authorization"] =
             "Bearer " + response.data.access;

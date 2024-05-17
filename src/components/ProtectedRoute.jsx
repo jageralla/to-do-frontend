@@ -44,22 +44,23 @@ function ProtectedRoute({ children }) {
     const now = Date.now() / 1000;
     const decodedRefreshToken = jwtDecode(refreshtoken); //decode the token
     const refreshTokenExpiration = decodedRefreshToken.exp;
+    
     const decodedAccessToken = jwtDecode(accessToken); //decode the token
     const accessTokenExpiration = decodedAccessToken.exp; // get the token expiration
 
-    if (refreshTokenExpiration < now) {
+    if (refreshTokenExpiration < now && accessTokenExpiration < 0) {
       setIsAuthorized(false);
       return;
     }
 
-    if (accessTokenExpiration < now) {
+    else {
       await refreshToken();
+      console.log(refreshTokenExpiration < now)
+      console.log(accessTokenExpiration < now)
       console.log("refreshed token");
       setIsAuthorized(true);
       return;
     }
-
-    setIsAuthorized(true);
   };
 
   if (isAuthorized === null) {
