@@ -73,11 +73,11 @@ const Register = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="login-container">
-            <h1 className="text-center text-white mb-4">Register</h1>
+            <h1 className="text-center mb-4">Register</h1>
             <form>
               <div className="mb-3">
                 <input
-                  className="form-control"
+                  className="input-field"
                   value={name}
                   placeholder="Name"
                   onChange={(e) => setName(e.target.value)}
@@ -86,7 +86,7 @@ const Register = () => {
               </div>
               <div className="mb-3">
                 <input
-                  className="form-control"
+                  className="input-field"
                   value={email}
                   placeholder="Email"
                   onChange={(e) => setEmail(e.target.value)}
@@ -96,7 +96,7 @@ const Register = () => {
               <div className="mb-3">
                 <input
                   type="password"
-                  className="form-control"
+                  className="input-field"
                   value={password}
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -114,7 +114,7 @@ const Register = () => {
                 </button>
               </div>
               <div className="text-center mt-3">
-                <p className="text-white">
+                <p className="">
                   Already registered? <Link to="/login">Login</Link>
                 </p>
               </div>

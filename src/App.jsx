@@ -16,6 +16,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 function Logout() {
   localStorage.clear();
   return <Navigate to="/login" />;
@@ -23,10 +25,11 @@ function Logout() {
 
 function App() {
   const [token, setToken] = useState("");
-  const [serverActive, setServerActive] = useState("false")
+  const [serverActive, setServerActive] = useState("false");
 
   useEffect(() => {
-    checkServerStatus(); // check if backend server is online
+    checkServerStatus();
+    // check if backend server is online
     const path = window.location.pathname;
     const segments = path.split("/"); // Split the path into segments
     const tokenFromUrl = segments[segments.length - 2]; // Assuming the token is the last segment/ Assuming the token is the last segment
@@ -36,43 +39,46 @@ function App() {
   }, []);
 
   const checkServerStatus = async () => {
-    const response = axios.get('/api/online');
-    if (response.status == 200){
-      setServerActive(true)
+    const response = axios.get(baseUrl + "/api/server-status/");
+    if (response.data.status === 200) {
+      setServerActive(true);
     }
-    setServerActive(false)
-  }
-  
+    setServerActive(false);
+  };
+
   return (
     <>
-    <BrowserRouter>
-      <Header />
-      {!serverActive? <p className="text-center">500 INTERNAL SERVER ERROR</p> :
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+      <BrowserRouter>
+        <Header />
+        {!serverActive ? (
+          <p className="text-center">500 INTERNAL SERVER ERROR</p>
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route
-          path="/password-reset-request"
-          element={<PasswordResetRequestPage />}
-        />
-        <Route
-          path="/password-reset-confirm/:token"
-          element={<PasswordResetConfirmPage token={token} />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>}
-    </BrowserRouter></>
-    
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route
+              path="/password-reset-request"
+              element={<PasswordResetRequestPage />}
+            />
+            <Route
+              path="/password-reset-confirm/:token"
+              element={<PasswordResetConfirmPage token={token} />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        )}
+      </BrowserRouter>
+    </>
   );
 }
 

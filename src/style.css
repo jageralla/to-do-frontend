@@ -59,7 +59,7 @@ li {
     line-height: 22px;
     background-color: #2f2248;
     color: #a38fcc;
-    border-radius: 40px;
+    border-radius: 24px;
 }
 
 .input-field::placeholder {
@@ -178,6 +178,7 @@ ul.todo-nav li {
     background-color: #6929f5;
     color: #fff;
     font-family: default-font;
+    border-radius: 24px;
 
 }
 

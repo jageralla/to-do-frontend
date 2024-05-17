@@ -25,7 +25,7 @@ const Home = () => {
       setTodos(response.data);
     } catch (error) {
       alert("You have been logged out. Please Login again.");
-      navigate("/login")
+      navigate("/login");
     }
   };
 
@@ -117,6 +117,11 @@ const Home = () => {
               />
               <button
                 className="btn task-entry-button"
+                style={{
+                  backgroundColor: "#6929f5",
+                  color: "white",
+                  fontFamily: "default-font",
+                }}
                 disabled={todo === "" ? true : false}
                 onClick={createTodo}
               >

@@ -17,7 +17,7 @@ function ProtectedRoute({ children }) {
     const refreshtoken = localStorage.getItem(REFRESH_TOKEN);
 
     try {
-      const response = await api.post("/api/token/refresh", {
+      const response = await api.post("/api/token/refresh/", {
         refresh: refreshtoken,
       });
       if (response.status === 200) {
@@ -44,20 +44,18 @@ function ProtectedRoute({ children }) {
     const now = Date.now() / 1000;
     const decodedRefreshToken = jwtDecode(refreshtoken); //decode the token
     const refreshTokenExpiration = decodedRefreshToken.exp;
-    
+
     const decodedAccessToken = jwtDecode(accessToken); //decode the token
     const accessTokenExpiration = decodedAccessToken.exp; // get the token expiration
 
     if (refreshTokenExpiration < now && accessTokenExpiration < 0) {
       setIsAuthorized(false);
       return;
-    }
-
-    else {
+    } else {
       await refreshToken();
-      console.log(refreshTokenExpiration < now)
-      console.log(accessTokenExpiration < now)
-      console.log("refreshed token");
+      console.log(refreshTokenExpiration < now);
+      console.log(accessTokenExpiration < now);
+      console.log("refresh token");
       setIsAuthorized(true);
       return;
     }

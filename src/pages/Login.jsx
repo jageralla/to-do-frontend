@@ -24,20 +24,18 @@ const Login = () => {
     const now = Date.now() / 1000;
 
     if (accessToken && refreshToken) {
-      const decodedAccessToken = jwtDecode(accessToken);//decode the access token
-      const decodedRefreshToken = jwtDecode(refreshToken);  //decode the refresh token
+      const decodedAccessToken = jwtDecode(accessToken); //decode the access token
+      const decodedRefreshToken = jwtDecode(refreshToken); //decode the refresh token
       const accessTokenExpiration = decodedAccessToken.exp; // get access token expiration
       const refreshTokenExpiration = decodedRefreshToken.exp; // get refresh token expiration
       if (accessTokenExpiration > now && refreshTokenExpiration > now) {
         console.log("token available and not expired");
         navigate("/");
       }
-      
-    } 
+    }
   };
 
   const validateInputs = () => {
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(email);
     const isValidPassword = password.length > 0;
@@ -67,7 +65,7 @@ const Login = () => {
       setLoading(false);
       navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -78,12 +76,12 @@ const Login = () => {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="login-container">
-            <h1 className="text-center text-white mb-4">Login</h1>
+            <h1 className="text-center mb-4">Login</h1>
             <form>
               <div className="mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className="input-field"
                   value={email}
                   id="inputEmail"
                   placeholder="Email"
@@ -94,7 +92,7 @@ const Login = () => {
               <div className="mb-3">
                 <input
                   type="password"
-                  className="form-control"
+                  className="input-field"
                   value={password}
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
