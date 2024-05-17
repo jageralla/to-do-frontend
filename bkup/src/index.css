@@ -1,0 +1,125 @@
+
+body{
+  margin-top:20px;
+  background: #dce0d9;
+}
+
+.todo-nav {
+  margin-top: 10px
+}
+
+.todo-list {
+  margin: 10px 0
+}
+
+.todo-list .todo-item {
+  padding: 15px;
+  margin: 5px 0;
+  border-radius: 6px;
+  background: #ece0d2;
+}
+
+div.checker {
+  width: 18px;
+  height: 18px
+}
+
+div.checker input,
+div.checker span {
+  width: 18px;
+  height: 18px
+}
+
+div.checker span {
+  display: -moz-inline-box;
+  display: inline-block;
+  zoom: 1;
+  text-align: center;
+  background-position: 0 -260px;
+}
+
+div.checker, div.checker input, div.checker span {
+  width: 19px;
+  height: 19px;
+}
+
+div.checker, div.radio, div.uploader {
+  position: relative;
+}
+
+div.button, div.button *, div.checker, div.checker *, div.radio, div.radio *, div.selector, div.selector *, div.uploader, div.uploader * {
+  margin: 0;
+  padding: 0;
+}
+
+div.button, div.checker, div.radio, div.selector, div.uploader {
+  display: -moz-inline-box;
+  display: inline-block;
+  zoom: 1;
+  vertical-align: middle;
+}
+
+.card {
+  padding: 25px;
+  margin-bottom: 20px;
+  border: initial;
+  background: #fbf6ef;
+  border-radius: 10px;
+  box-shadow: 0 1px 15px rgba(0,0,0,0.04), 0 1px 6px rgba(0,0,0,0.04);
+  height: 720px;
+}
+
+.card .todo-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+.task {
+  margin-left: 10px; /* Adjust the value as needed */
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.task {
+  flex-grow: 1; /* Allow the task span to grow to fill available space */
+}
+
+.add-task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.custom-icon {
+  margin-left: 4px;
+}
+
+.delete-icon {
+  color: rgb(219, 33, 33);
+  font-size: 18px;
+  margin-right: 4px;
+}
+
+.due-date-image {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+}
+
+.due-date {
+  margin-right: 24px;
+}
+
+.nav-item .nav-link.active-link {
+  color: green;
+}
+
+.nav-item .nav-link {
+  color: rgb(96, 96, 193);
+}
+
+

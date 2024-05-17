@@ -1,0 +1,129 @@
+html, body {
+    font-size: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Manrope";
+    background-color: #151022;
+    color: #fafafa;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 48px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+li {
+    list-style: none;
+}
+
+.to-do-section {
+    margin-top: 60px;
+}
+
+.task-field {
+    display: flex;
+    align-items: center;
+    background-color: #2f2248;
+    border-radius: 24px;
+    margin-top: 24px;
+    padding-right: 0;
+}
+
+.input-field {
+    width: 100%;
+    border: 0;
+    padding: 8px 24px;
+    font-family: "Manrope";
+    font-size: 14px;
+    line-height: 22px;
+    background-color: #2f2248;
+    color: #a38fcc;
+}
+
+.input-field::placeholder {
+    color: #a38fcc;
+    font-weight: 500;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.task-field button {
+    padding: 12px 56px;
+    border: 0;
+    border-radius: 40px;
+    font-family: "Manrope";
+    background-color: #6929f5;
+    color: #fff;
+    font-size: 700;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.to-do-information {
+    margin-top: 40px;
+}
+
+.task-container {
+    display: flex;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 24px;
+    border-bottom: 1px solid #a38fcc;
+    padding-bottom: 16px;
+}
+
+.to-do-information_counter {
+    margin: 0;
+    padding: 0;
+}
+
+.task {
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 16px;
+}
+
+.icon-background {
+    background-color: #2e214a;
+    padding: 8px;
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+input[type = "checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type = "checkbox"]:checked {
+    background-color: #6e52ac;
+    border-color: #fff;
+}
+
+
+
+
+
