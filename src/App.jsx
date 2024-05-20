@@ -39,11 +39,17 @@ function App() {
   }, []);
 
   const checkServerStatus = async () => {
-    const response = axios.get(baseUrl + "/api/server-status/");
-    if (response.data.status === 200) {
-      setServerActive(true);
+
+    try{
+      const response = await axios.get(baseUrl + "/api/server-status/");
+      
+      if (response.status === 200) {
+        console.log("online")
+        setServerActive(true);
+      }
+    } catch(error){
+      setServerActive(false)
     }
-    setServerActive(false);
   };
 
   return (

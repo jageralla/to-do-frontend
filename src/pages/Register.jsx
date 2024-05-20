@@ -77,7 +77,7 @@ const Register = () => {
         <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
         <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
         <button disabled={loading? true: false} onClick={handleSubmit}>{loading? <Spinner/> : "Register"}</button>
-        <p className="message">Already registered? <Link to="/register">Sign In</Link></p>
+        <p className="message">Already registered? <Link to="/login">Login</Link></p>
       </form>
     </div>
   </div>
