@@ -48,6 +48,7 @@ const PasswordResetRequestPage = () => {
         />
         <button
           className="task-entry-action"
+          style={{backgroundColor: "#aa64e8"}}
           disabled={email === "" ? true : false}
           onClick={handleSubmit}
         >

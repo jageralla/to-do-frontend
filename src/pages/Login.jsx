@@ -20,7 +20,7 @@ const Login = () => {
 
   const isLoggedIn = () => {
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    const refreshToken = localStorage.getItem(ACCESS_TOKEN);
+    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
     const now = Date.now() / 1000;
 
     if (accessToken && refreshToken) {
@@ -65,7 +65,9 @@ const Login = () => {
       setLoading(false);
       navigate("/");
     } catch (error) {
+      alert("Invalid email or password.")
       console.log(error);
+
     } finally {
       setLoading(false);
     }
@@ -77,8 +79,8 @@ const Login = () => {
     <div className="form">
     <h1 className="mb-5">Login</h1>
       <form className="login-form">
-        <input type="text" value={email} placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-        <input type="password" value={password} placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+        <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
         <button disabled={loading? true: false} onClick={handleSubmit}>{loading? <Spinner/> : "Login"}</button>
         <p className="message"><Link to="/password-reset-request">Forgot password? </Link> <Link to="/register">Create an account</Link></p>
       </form>
