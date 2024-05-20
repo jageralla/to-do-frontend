@@ -77,10 +77,10 @@ const Login = () => {
     <div className="form">
     <h1 className="mb-5">Login</h1>
       <form className="login-form">
-        <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <input type="text" value={email} placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" value={password} placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
         <button disabled={loading? true: false} onClick={handleSubmit}>{loading? <Spinner/> : "Login"}</button>
-        <p className="message">Not registered? <Link to="/register">Create an account</Link></p>
+        <p className="message"><Link to="/password-reset-request">Forgot password? </Link> <Link to="/register">Create an account</Link></p>
       </form>
     </div>
   </div>

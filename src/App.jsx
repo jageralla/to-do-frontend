@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import PasswordResetRequestPage from "./pages/PasswordResetRequestPage";
 import PasswordResetConfirmPage from "./pages/PasswordResetConfirmPage";
 import Home from "./pages/Home";
+import Spinner from './components/Spinner'
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { useParams } from "react-router-dom";
@@ -26,6 +27,7 @@ function Logout() {
 function App() {
   const [token, setToken] = useState("");
   const [serverActive, setServerActive] = useState("false");
+  const [checkingServer, setCheckingServer] = useState(true)
 
   useEffect(() => {
     checkServerStatus();
@@ -50,13 +52,14 @@ function App() {
     } catch(error){
       setServerActive(false)
     }
+    setCheckingServer(false)
   };
 
   return (
     <>
       <BrowserRouter>
         <Header />
-        {!serverActive ? (
+        {checkingServer? <Spinner className="text-center"/> : !serverActive ? (
           <p className="text-center">500 INTERNAL SERVER ERROR</p>
         ) : (
           <Routes>
