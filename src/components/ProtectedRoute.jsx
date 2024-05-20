@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Spinner from './Spinner'
 
 function ProtectedRoute({ children }) {
   const [isAuthorized, setIsAuthorized] = useState(null);
@@ -62,7 +63,7 @@ function ProtectedRoute({ children }) {
   };
 
   if (isAuthorized === null) {
-    return <div>Loading....</div>;
+    return <div className="spinner-container "><Spinner/></div>;
   }
 
   return isAuthorized ? children : <Navigate to="/login/" />;
