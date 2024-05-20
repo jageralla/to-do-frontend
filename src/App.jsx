@@ -59,7 +59,9 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        {checkingServer? <Spinner className="text-center"/> : !serverActive ? (
+        {checkingServer? <div className="spinner-container">
+  <Spinner />
+</div> : !serverActive ? (
           <p className="text-center">500 INTERNAL SERVER ERROR</p>
         ) : (
           <Routes>
