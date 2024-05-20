@@ -72,52 +72,18 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <div className="login-container">
-            <h1 className="text-center mb-4">Login</h1>
-            <form>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  className="input-field"
-                  value={email}
-                  id="inputEmail"
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="password"
-                  className="input-field"
-                  value={password}
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="d-grid gap-2">
-                <button
-                  type="submit"
-                  disabled={loading ? true : false}
-                  className="btn action-button"
-                  onClick={handleSubmit}
-                >
-                  {loading ? <Spinner size={"sm"} /> : "Sign in"}
-                </button>
-              </div>
-              <div className="text-center mt-3">
-                <Link to="/password-reset-request">Forgot password?</Link> Don't
-                have an account? <Link to="/register">Register</Link>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    
+    <div className="login-page">
+    <div className="form">
+    <h1 className="mb-5">Login</h1>
+      <form className="login-form">
+        <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <button disabled={loading? true: false} onClick={handleSubmit}>{loading? <Spinner/> : "Login"}</button>
+        <p className="message">Not registered? <Link to="/register">Create an account</Link></p>
+      </form>
     </div>
+  </div>
   );
 };
 

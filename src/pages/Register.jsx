@@ -69,60 +69,18 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-6 offset-md-3">
-          <div className="login-container">
-            <h1 className="text-center mb-4">Register</h1>
-            <form>
-              <div className="mb-3">
-                <input
-                  className="input-field"
-                  value={name}
-                  placeholder="Name"
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  className="input-field"
-                  value={email}
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="password"
-                  className="input-field"
-                  value={password}
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="d-grid gap-2">
-                <button
-                  type="submit"
-                  disabled={loading ? true : false}
-                  className="btn action-button"
-                  onClick={handleSubmit}
-                >
-                  {loading ? <Spinner size={"sm"} /> : "Submit"}
-                </button>
-              </div>
-              <div className="text-center mt-3">
-                <p className="">
-                  Already registered? <Link to="/login">Login</Link>
-                </p>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    <div className="login-page">
+    <div className="form">
+    <h1 className="mb-5">Register</h1>
+      <form className="login-form">
+        <input type="text" value={name} placeholder="Name" onChange={(e) => setName(e.target.value)}/>
+        <input type="text" value={email} placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" value={password} placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        <button disabled={loading? true: false} onClick={handleSubmit}>{loading? <Spinner/> : "Register"}</button>
+        <p className="message">Already registered? <Link to="/register">Sign In</Link></p>
+      </form>
     </div>
+  </div>
   );
 };
 
