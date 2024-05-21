@@ -4,6 +4,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const baseUrl = import.meta.env.VITE_API_URL
 
 const PasswordResetConfirmPage = ({ token }) => {
   const [newPassword, setNewPassword] = useState("");
@@ -27,7 +28,7 @@ const PasswordResetConfirmPage = ({ token }) => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/password-reset-confirm/", {
+      await axios.post(baseUrl + "/api/password-reset-confirm/", {
         token,
         new_password: newPassword,
       });

@@ -1,6 +1,7 @@
 // PasswordResetRequestForm.js
 import { useState } from "react";
 import axios from "axios";
+const baseUrl = import.meta.env.VITE_API_URL
 
 const PasswordResetRequestPage = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const PasswordResetRequestPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/password-reset/", { email });
+      await axios.post(baseUrl + "/api/password-reset/", { email });
       setMessage("Password reset link has been sent to your email.");
     } catch (error) {
       setMessage("The email you entered is not associated with any account.");
