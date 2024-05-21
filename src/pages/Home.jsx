@@ -58,12 +58,19 @@ const Home = () => {
 
   const getUser = async () => {
     try {
-      const response = await api.get("/api/user/");
-      if (response.status === 200) {
-        setUser(response.data.name);
+      const storedUser = localStorage.getItem("user"); // get cached
+      if (storedUser) {
+        setUser(storedUser);
+      } else {
+        const response = await api.get("/api/user/");
+        if (response.status === 200) {
+          setUser(response.data.name);
+          localStorage.setItem("user", response.data.name);
+        }
       }
     } catch (error) {
-      alert("You have been logged out. Please Login again."); //
+      alert("You have been logged out. Please Login again.");
+      navigate("/login");
     }
   };
 

@@ -4,43 +4,28 @@ const Todo = ({ todo, onDelete, onToggleComplete }) => {
   const handleCheckboxChange = () => {
     onToggleComplete(todo.id);
   };
-  const formatDate = (dateString) => {
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-
-    return `${day}-${month}-${year}`;
-  };
   return (
     <>
-    <li className="list">
-                  <div className="task-container">
-                    <input type="checkbox" checked={todo.is_completed}
-            onChange={handleCheckboxChange}/>
-                    <span className="task" style={{
-            textDecoration: todo.is_completed ? "line-through" : "none",
-          }}>{todo.task}</span>
-                  </div>
-                  <div className="icon-background" onClick={() => onDelete(todo.id)}>
-                  <i class="bi bi-trash" style={{fontSize: 18}}></i>
-                  </div>
-                </li>
+      <li className="list">
+        <div className="task-container">
+          <input
+            type="checkbox"
+            checked={todo.is_completed}
+            onChange={handleCheckboxChange}
+          />
+          <span
+            className="task"
+            style={{
+              textDecoration: todo.is_completed ? "line-through" : "none",
+            }}
+          >
+            {todo.task}
+          </span>
+        </div>
+        <div className="icon-background" onClick={() => onDelete(todo.id)}>
+          <i className="bi bi-trash" style={{ fontSize: 18 }}></i>
+        </div>
+      </li>
       {/* <div className="todo-item">
         <div className="checker">
           <input
