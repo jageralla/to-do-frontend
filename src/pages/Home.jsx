@@ -34,11 +34,19 @@ const Home = () => {
     e.preventDefault();
 
     const due_date = "2024-09-09";
+    const newTodo = {
+      task: todo,
+      due_date: "2024-09-09",
+      is_completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
+    setTodo("");
+    setFilter("all");
+
     try {
       const response = await api.post("/api/todos/", { task: todo, due_date });
       if (response.status === 201) {
-        setTodo("");
-        setFilter("all");
         getTodos();
       }
     } catch (error) {
@@ -67,6 +75,9 @@ const Home = () => {
   });
 
   const deleteTodo = async (id) => {
+    // Optimistically update the UI
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
     try {
       const response = await api.delete(`/api/todos/delete/${id}/`);
       if (response.status === 204) {
@@ -74,12 +85,19 @@ const Home = () => {
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
+      getTodos();
     }
   };
 
   const toggleComplete = async (id) => {
     const todo = todos.find((todo) => todo.id === id);
     if (!todo) return;
+
+    // Optimistically update the UI
+    const updatedTodos = todos.map((t) =>
+      t.id === id ? { ...t, is_completed: !t.is_completed } : t
+    );
+    setTodos(updatedTodos);
 
     try {
       const response = await api.patch(`/api/todos/${id}/complete/`, {
