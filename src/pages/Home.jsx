@@ -53,6 +53,7 @@ const Home = () => {
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
+      navigate("/logout")
     } finally {
       setLoading(false);
     }
