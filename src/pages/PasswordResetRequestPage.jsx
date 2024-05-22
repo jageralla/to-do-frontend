@@ -37,7 +37,7 @@ const PasswordResetRequestPage = () => {
 
   return (
     <div className="password-reset-container">
-      <h2>Password Reset Request</h2>
+      <h2 className="mt-5">Password Reset Request</h2>
       <div className="task-field">
         <input
           className="input-field"

@@ -132,7 +132,7 @@ const Home = () => {
                 <button className="btn btn-logout">Logout</button>
               </Link>
             </div>
-            <div className="task-field">
+            <form className="task-field">
               <input
                 className="input-field"
                 type="text"
@@ -153,7 +153,7 @@ const Home = () => {
               >
                 {loading ? <Spinner /> : "Enter"}
               </button>
-            </div>
+            </form>
             <div className="to-do-information">
               <ul className="todo-nav">
                 <FilterNavItem
