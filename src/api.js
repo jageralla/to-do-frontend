@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
 
-const baseUrl = import.meta.env.VITE_API_URL
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const api = axios.create({
   baseURL: baseUrl, // Adjust the base URL to your backend
@@ -47,17 +47,14 @@ api.interceptors.response.use(
       }
 
       try {
-        const response = await axios.post(baseUrl + 
-          "/api/token/refresh/",
-          {
-            // refresh the token
-            refresh: refreshToken,
-          }
-        );
-
+        const response = await axios.post(baseUrl + "/api/token/refresh/", {
+          // refresh the token
+          refresh: refreshToken,
+        });
+        console.log(response.data.status);
         if (response.status === 200) {
           // if successful, store the new access token to localstorage and the update the authorization header with the new token and do the request again
-          console.log("token freshed");
+          console.log("token freshed 12312312");
           localStorage.setItem(ACCESS_TOKEN, response.data.access);
           originalRequest.headers["Authorization"] =
             "Bearer " + response.data.access;

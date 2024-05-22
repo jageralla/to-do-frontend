@@ -32,22 +32,21 @@ const Home = () => {
   const createTodo = async (e) => {
     setLoading(true);
     e.preventDefault();
-
-    const due_date = "2024-09-09";
+  
     const newTodo = {
       task: todo,
-      due_date: "2024-09-09",
       is_completed: false,
     };
-
+  
+    // Optimistically update the UI
     setTodos([...todos, newTodo]);
     setTodo("");
     setFilter("all");
-
+  
     try {
-      const response = await api.post("/api/todos/", { task: todo, due_date });
+      const response = await api.post("/api/todos/", { task: todo });
       if (response.status === 201) {
-        getTodos();
+        getTodos(); // Refresh todos from the server after successful creation
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
@@ -88,7 +87,6 @@ const Home = () => {
     try {
       const response = await api.delete(`/api/todos/delete/${id}/`);
       if (response.status === 204) {
-        getTodos();
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
@@ -111,7 +109,7 @@ const Home = () => {
         is_completed: !todo.is_completed,
       });
       if (response.status === 200) {
-        getTodos();
+        console.log("todo updated in the server")
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
