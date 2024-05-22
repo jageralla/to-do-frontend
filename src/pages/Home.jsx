@@ -12,6 +12,7 @@ const Home = () => {
   const [filter, setFilter] = useState("all");
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,13 +21,15 @@ const Home = () => {
   }, []);
 
   const getTodos = async () => {
+    setFetching(true)
     try {
       const response = await api.get("/api/todos/");
       setTodos(response.data);
     } catch (error) {
       alert("You have been logged out. Please Login again.");
-      navigate("/login");
+      navigate("/logout");
     }
+    setFetching(false)
   };
 
   const createTodo = async (e) => {
@@ -178,17 +181,25 @@ const Home = () => {
                 </FilterNavItem>
               </ul>
               <ul className="to-do-information_counter">
-                {filteredTodos.length === 0 && (
-                  <NoTodosMessage filter={filter} />
-                )}
-                {filteredTodos.map((todo) => (
-                  <Todo
-                    todo={todo}
-                    key={todo.id}
-                    onDelete={deleteTodo}
-                    onToggleComplete={toggleComplete}
-                  />
-                ))}
+              {fetching ? (
+                ""
+              ) : (
+                <>
+                  {filteredTodos.length === 0 && (
+                    <NoTodosMessage filter={filter} />
+                  )}
+                  
+                </>
+              )}
+              {filteredTodos.map((todo) => (
+                    <Todo
+                      todo={todo}
+                      key={todo.id}
+                      onDelete={deleteTodo}
+                      onToggleComplete={toggleComplete}
+                    />
+                  ))}
+                
               </ul>
             </div>
           </div>

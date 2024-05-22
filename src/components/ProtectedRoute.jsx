@@ -23,8 +23,6 @@ function ProtectedRoute({ children }) {
       });
       if (response.status === 200) {
         localStorage.setItem(ACCESS_TOKEN, response.data.access);
-        console.log("new access token from server: " + response.data.access)
-        console.log("from localstorage: " + localStorage.getItem(ACCESS_TOKEN))
         setIsAuthorized(true);
       } else {
         setIsAuthorized(false);
@@ -56,8 +54,6 @@ function ProtectedRoute({ children }) {
       return;
     } else {
       await refreshToken();
-      console.log(refreshTokenExpiration < now);
-      console.log(accessTokenExpiration < now);
       console.log("refresh token");
       setIsAuthorized(true);
       return;
