@@ -4,7 +4,7 @@ const Spinner = ({ color = "#007bff" }) => {
     <div
       className="spinner-border"
       role="status"
-      style={{ width: "20px", height: "20px", color }}
+      style={{ width: "19px", height: "19px", color: "#3b324e" }}
     >
       <span className="visually-hidden">Loading...</span>
     </div>

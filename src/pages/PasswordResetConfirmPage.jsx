@@ -59,7 +59,7 @@ const PasswordResetConfirmPage = ({ token }) => {
           />
           <button
             className="task-entry-button"
-            style={{backgroundColor: "#aa64e8"}}
+            style={{backgroundColor: "#aa64e8", fontFamily: "default-font"}}
             disabled={newPassword === "" ? true : false}
             onClick={handleSubmit}
           >
