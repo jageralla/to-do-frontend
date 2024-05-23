@@ -4,6 +4,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 const baseUrl = import.meta.env.VITE_API_URL
 
 const PasswordResetConfirmPage = ({ token }) => {
@@ -21,7 +22,6 @@ const PasswordResetConfirmPage = ({ token }) => {
     e.preventDefault();
 
     if (!isPasswordValid(newPassword)) {
-      console.log("not valid");
       setMessage("Password must be at least 6 characters long.");
       setLoading(false);
       return;
@@ -63,7 +63,7 @@ const PasswordResetConfirmPage = ({ token }) => {
             disabled={newPassword === "" ? true : false}
             onClick={handleSubmit}
           >
-            Confirm
+            {loading? <Spinner/> : "Confirm"}
           </button>
         </div>
         <p className="mt-3 text-danger">{message}</p>

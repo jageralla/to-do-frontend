@@ -2,7 +2,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 //import "./App.css";
-import Test from "./pages/Test";
 import Header from "./components/Header";
 import PasswordResetRequestPage from "./pages/PasswordResetRequestPage";
 import PasswordResetConfirmPage from "./pages/PasswordResetConfirmPage";
@@ -10,7 +9,6 @@ import Home from "./pages/Home";
 import Spinner from './components/Spinner'
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import { useParams } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";

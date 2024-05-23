@@ -1,6 +1,7 @@
 // PasswordResetRequestForm.js
 import { useState } from "react";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 const baseUrl = import.meta.env.VITE_API_URL
 
 const PasswordResetRequestPage = () => {
@@ -10,7 +11,6 @@ const PasswordResetRequestPage = () => {
 
   // Function to validate email using regular expression
   const isEmailValid = (email) => {
-    // Regular expression pattern for validating email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
   };
@@ -27,7 +27,7 @@ const PasswordResetRequestPage = () => {
 
     try {
       await axios.post(baseUrl + "/api/password-reset/", { email });
-      setMessage("Password reset link has been sent to your email.");
+      setMessage("Password reset link has been sent to your email. Please check your inbox and spam folder.");
     } catch (error) {
       setMessage("The email you entered is not associated with any account.");
     }
@@ -53,7 +53,7 @@ const PasswordResetRequestPage = () => {
           disabled={email === "" ? true : false}
           onClick={handleSubmit}
         >
-          Reset
+          {loading? <Spinner/> : "Reset"}
         </button>
       </div>
       <p className="mt-3 text-danger">{message}</p>
