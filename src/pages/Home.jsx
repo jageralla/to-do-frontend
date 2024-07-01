@@ -12,7 +12,7 @@ const Home = () => {
   const [filter, setFilter] = useState("all");
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
-  const [fetching, setFetching] = useState(false)
+  const [fetching, setFetching] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
   }, []);
 
   const getTodos = async () => {
-    setFetching(true)
+    setFetching(true);
     try {
       const response = await api.get("/api/todos/");
       setTodos(response.data);
@@ -29,23 +29,23 @@ const Home = () => {
       alert("You have been logged out. Please Login again.");
       navigate("/logout");
     }
-    setFetching(false)
+    setFetching(false);
   };
 
   const createTodo = async (e) => {
     setLoading(true);
     e.preventDefault();
-  
+
     const newTodo = {
       task: todo,
       is_completed: false,
     };
-  
+
     // Optimistically update the UI
     setTodos([...todos, newTodo]);
     setTodo("");
     setFilter("all");
-  
+
     try {
       const response = await api.post("/api/todos/", { task: todo });
       if (response.status === 201) {
@@ -53,7 +53,7 @@ const Home = () => {
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
-      navigate("/logout")
+      navigate("/logout");
     } finally {
       setLoading(false);
     }
@@ -91,6 +91,7 @@ const Home = () => {
     try {
       const response = await api.delete(`/api/todos/delete/${id}/`);
       if (response.status === 204) {
+        return;
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
@@ -113,7 +114,7 @@ const Home = () => {
         is_completed: !todo.is_completed,
       });
       if (response.status === 200) {
-        console.log("todo updated in the server")
+        console.log("todo updated in the server");
       }
     } catch (error) {
       alert("You have been logged out. Please Login again.");
@@ -182,25 +183,23 @@ const Home = () => {
                 </FilterNavItem>
               </ul>
               <ul className="to-do-information_counter">
-              {fetching ? (
-                ""
-              ) : (
-                <>
-                  {filteredTodos.length === 0 && (
-                    <NoTodosMessage filter={filter} />
-                  )}
-                  
-                </>
-              )}
-              {filteredTodos.map((todo) => (
-                    <Todo
-                      todo={todo}
-                      key={todo.id}
-                      onDelete={deleteTodo}
-                      onToggleComplete={toggleComplete}
-                    />
-                  ))}
-                
+                {fetching ? (
+                  ""
+                ) : (
+                  <>
+                    {filteredTodos.length === 0 && (
+                      <NoTodosMessage filter={filter} />
+                    )}
+                  </>
+                )}
+                {filteredTodos.map((todo) => (
+                  <Todo
+                    todo={todo}
+                    key={todo.id}
+                    onDelete={deleteTodo}
+                    onToggleComplete={toggleComplete}
+                  />
+                ))}
               </ul>
             </div>
           </div>

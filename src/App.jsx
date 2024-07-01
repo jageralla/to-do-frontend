@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import PasswordResetRequestPage from "./pages/PasswordResetRequestPage";
 import PasswordResetConfirmPage from "./pages/PasswordResetConfirmPage";
 import Home from "./pages/Home";
-import Spinner from './components/Spinner'
+import Spinner from "./components/Spinner";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -25,41 +25,39 @@ function Logout() {
 function App() {
   const [token, setToken] = useState("");
   const [serverActive, setServerActive] = useState("false");
-  const [checkingServer, setCheckingServer] = useState(true)
+  const [checkingServer, setCheckingServer] = useState(true);
 
   useEffect(() => {
-    checkServerStatus();
-    // check if backend server is online
+    checkServerStatus(); // check if backend server is online
     const path = window.location.pathname;
     const segments = path.split("/"); // Split the path into segments
-    const tokenFromUrl = segments[segments.length - 2]; // Assuming the token is the last segment/ Assuming the token is the last segment
+    const tokenFromUrl = segments[segments.length - 2]; // Assuming the token is the last segment
     if (tokenFromUrl) {
       setToken(tokenFromUrl);
     }
   }, []);
 
   const checkServerStatus = async () => {
-
-    try{
+    try {
       const response = await axios.get(baseUrl + "/api/server-status/");
-      
       if (response.status === 200) {
-        console.log("online")
         setServerActive(true);
       }
-    } catch(error){
-      setServerActive(false)
+    } catch (error) {
+      setServerActive(false);
     }
-    setCheckingServer(false)
+    setCheckingServer(false);
   };
 
   return (
     <>
       <BrowserRouter>
         <Header />
-        {checkingServer? <div className="spinner-container">
-  <Spinner />
-</div> : !serverActive ? (
+        {checkingServer ? (
+          <div className="spinner-container">
+            <Spinner />
+          </div>
+        ) : !serverActive ? (
           <p className="text-center">500 INTERNAL SERVER ERROR</p>
         ) : (
           <Routes>
